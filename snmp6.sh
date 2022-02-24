@@ -19,7 +19,7 @@ do
    UNCORRECTED=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.4.$IFINDEX1 = Counter32: /,/g" <<< "$UNCORRECTED")
    SNR=$(snmpwalk -v 2c -c cisco123 $IP .1.3.6.1.2.1.10.127.1.1.4.1.5.$IFINDEX1)
    SNR=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.5.$IFINDEX1 = INTEGER: /,/g" <<< "$SNR")
-   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> /home/osboxes/SNMP/$IFINDEX1.txt
+   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> $PWD/$IFINDEX1.txt
 
    UNERRORED=$(snmpwalk -v 2c -c cisco123 $IP .1.3.6.1.2.1.10.127.1.1.4.1.2.$IFINDEX2)
    UNERRORED=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.2.$IFINDEX2 = Counter32: /,/g" <<< "$UNERRORED")
@@ -29,7 +29,7 @@ do
    UNCORRECTED=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.4.$IFINDEX2 = Counter32: /,/g" <<< "$UNCORRECTED")
    SNR=$(snmpwalk -v 2c -c cisco123 $IP .1.3.6.1.2.1.10.127.1.1.4.1.5.$IFINDEX2)
    SNR=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.5.$IFINDEX2 = INTEGER: /,/g" <<< "$SNR")
-   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> /home/osboxes/SNMP/$IFINDEX2.txt
+   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> $PWD/$IFINDEX2.txt
 
    UNERRORED=$(snmpwalk -v 2c -c cisco123 $IP .1.3.6.1.2.1.10.127.1.1.4.1.2.$IFINDEX3)
    UNERRORED=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.2.$IFINDEX3 = Counter32: /,/g" <<< "$UNERRORED")
@@ -39,7 +39,7 @@ do
    UNCORRECTED=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.4.$IFINDEX3 = Counter32: /,/g" <<< "$UNCORRECTED")
    SNR=$(snmpwalk -v 2c -c cisco123 $IP .1.3.6.1.2.1.10.127.1.1.4.1.5.$IFINDEX3)
    SNR=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.5.$IFINDEX3 = INTEGER: /,/g" <<< "$SNR")
-   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> /home/osboxes/SNMP/$IFINDEX3.txt
+   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> $PWD/$IFINDEX3.txt
 
    UNERRORED=$(snmpwalk -v 2c -c cisco123 $IP .1.3.6.1.2.1.10.127.1.1.4.1.2.$IFINDEX4)
    UNERRORED=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.2.$IFINDEX4 = Counter32: /,/g" <<< "$UNERRORED")
@@ -49,8 +49,8 @@ do
    UNCORRECTED=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.4.$IFINDEX4 = Counter32: /,/g" <<< "$UNCORRECTED")
    SNR=$(snmpwalk -v 2c -c cisco123 $IP .1.3.6.1.2.1.10.127.1.1.4.1.5.$IFINDEX4)
    SNR=$(sed "s/SNMPv2-SMI::transmission.127.1.1.4.1.5.$IFINDEX4 = INTEGER: /,/g" <<< "$SNR")
-   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> /home/osboxes/SNMP/$IFINDEX4.txt
+   (echo $now$UNERRORED$CORRECTED$UNCORRECTED$SNR) >> $PWD/$IFINDEX4.txt
 
-   sleep 300
+   sleep 10
 
 done
