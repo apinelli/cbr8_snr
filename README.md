@@ -43,7 +43,6 @@ Example: 488091.txt:
 18:22,149995,0,448,421
 18:22,149996,0,448,421
 18:23,149996,0,448,421
-
 ```
 The file `fec_snr.bas` can be imported to Excel in order to facilitate producing the charts:
 
@@ -55,7 +54,7 @@ The file `fec_snr.bas` can be imported to Excel in order to facilitate producing
    - Generates_SNRFEC_graphs (which generates the charts for FEC and SNR for each upstream channel)
 5) The end result is as follows:
 
-![pic_sample_for_md_readme.JPG]
+![Chart Example](pic_sample_for_md_readme.JPG)
 
 
 
