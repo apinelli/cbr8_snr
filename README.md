@@ -2,7 +2,7 @@
 # Fetches SNR & FEC data via SNMP
 
 
-This script fetches the following OIDs:
+This script has been written to read Forward Error Correction and Signal-To-Noise Ratio data, at given time intervals, for upstream channels in the Cisco CBR8 platform. It does so based on the following OIDs:
 
 docsIfSigQUnerroreds	.1.3.6.1.2.1.10.127.1.1.4.1.2
 	Codewords received on this channel without error.
@@ -25,26 +25,43 @@ docsIfSigQSignalNoise	.1.3.6.1.2.1.10.127.1.1.4.1.5
  	channel.  At the CMTS, describes the average Signal/Noise
  	of the upstream channel.
 
+It is necessary to have net-snmp package since the script invokes snmpwalk command.
+
 How to use it:
 
+1) Clone the following from github: 
+https://github.com/apinelli/cbr8_snr/tree/master
+
+2) Use `#show snmp mib ifmib ifindex` in the CBR8 in order to obtain the indexes of the interfaces you want to grab information from. 
+
+3) Modify the `ifindex.txt` file to include those indexes. Each line of the file must contain one index.
+
+Example: 488091.txt:
+```
+488040
+488041
+488042
+488043
+```
+4) Run the script:
+```
 ./snmp.sh
+```
+Make sure you give the correct IP address for the CMTS you want to obtain the data from. Also provide the SNMP community, interval for each polling and number of times the device will be polled.
 
-Use `#show snmp mib ifmib ifindex` in the CBR8 in order to obtain the indexes of the interfaces.
-
-The result will be a txt file named with the ifindex with the contents:
+5) The result will be one txt file per interface you specified in the `ifindex.txt` file. The files will be named with the corresponding ifindex and will have the following contents:
 ```
 [Time (HH:MM)],[Nb of cw without error],[Nb of cw corrected],[Nb of cw uncorrected],[SNR]
 ```
-
-Example: 488091.txt:
-
+Example:
 ```
 18:22,149994,0,448,421
 18:22,149995,0,448,421
 18:22,149996,0,448,421
 18:23,149996,0,448,421
 ```
-The file `fec_snr.bas` can be imported to Excel in order to facilitate producing the charts:
+
+6) The file `fec_snr.bas` can be imported to Excel in order to facilitate producing the charts:
 
 1) From Excel main menu go to Developer
 2) Click the option "Visual Basic"
