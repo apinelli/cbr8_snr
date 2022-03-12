@@ -23,7 +23,7 @@ echo
 echo "Polling CBR8 at $IP..."
 echo
 
-for i in {1..3}; do
+for i in {1..$TIMES}; do
    while read IFINDEX; do
      now=$(date +"%H:%M")
      UNERRORED=$(snmpwalk -v 2c -c $SNMP $IP .1.3.6.1.2.1.10.127.1.1.4.1.2.$IFINDEX)
