@@ -1,6 +1,6 @@
-=========================================
-Fetches SNR & FEC data via SNMP
-=========================================
+
+# Fetches SNR & FEC data via SNMP
+
 
 This script fetches the following OIDs:
 
@@ -27,7 +27,7 @@ docsIfSigQSignalNoise	.1.3.6.1.2.1.10.127.1.1.4.1.5
 
 How to use it:
 
-./snmp6.sh [ip_cmts] [SNMP password] [ifindex1] [ifindex2] [ifindex3] [ifindex4]
+./snmp.sh
 
 Use #show snmp mib ifmib ifindex in the CBR8 in order to obtain the indexes of the interfaces.
 
