@@ -32,7 +32,47 @@ How to use it:
 1) Clone the following from github: 
 https://github.com/apinelli/cbr8_snr
 
-2) Use `#show snmp mib ifmib ifindex` in the CBR8 in order to obtain the indexes of the interfaces you want to grab information from. 
+2) Use `#show snmp mib ifmib ifindex` in the CBR8 in order to obtain the indexes of the interfaces you want to grab information from. For example, if you want to grab statistics from your modem 0025.2eab.84a6 first identify to which interface it belongs:
+```
+CBR8#show cable modem 0025.2eab.84a6
+Load for five secs: 5%/0%; one minute: 5%; five minutes: 7%
+Time source is NTP, 17:42:11.137 EDT Mon May 2 2022
+                                                                                       D
+MAC Address    IP Address      I/F           MAC               Prim  RxPwr  Timing Num I
+                                             State             Sid   (dBmV) Offset CPE P
+0025.2eab.84a6 25.25.25.16     C1/0/0/UB     w-online(pt)      1    *7.00   3358   0   N
+```
+Now check the upstreams associated to this mac-domain (C1/0/0):
+```
+F241-38-5-CBR8-2#sh run int cable 1/0/0
+Load for five secs: 5%/0%; one minute: 6%; five minutes: 7%
+Time source is NTP, 17:41:08.836 EDT Mon May 2 2022
+
+Building configuration...
+
+Current configuration : 738 bytes
+!
+interface Cable1/0/0
+ description F241.38.5-DIPLEX FILTER 1 (temp Maxnet II diplex)
+ load-interval 30
+ downstream Integrated-Cable 1/0/0 rf-channel 0-31
+ upstream 0 Upstream-Cable 1/0/0 us-channel 0
+ upstream 1 Upstream-Cable 1/0/0 us-channel 1
+ upstream 2 Upstream-Cable 1/0/0 us-channel 2
+ upstream 3 Upstream-Cable 1/0/0 us-channel 3
+<snip>
+```
+From the output above you can see the upstreams associated to interface Cable 1/0/0. Now you can run the command to check what are the indexes of those upstream channels:
+```
+F241-38-5-CBR8-2#show snmp mib ifmib ifindex
+Load for five secs: 6%/0%; one minute: 9%; five minutes: 9%
+Time source is NTP, 17:37:34.657 EDT Mon May 2 2022
+<snip>
+Cable1/0/0-upstream0: Ifindex = 488040
+Cable1/0/0-upstream1: Ifindex = 488041
+Cable1/0/0-upstream2: Ifindex = 488042
+Cable1/0/0-upstream3: Ifindex = 488043
+```
 
 3) Modify the `ifindex.txt` file to include those indexes. Each line of the file must contain one index.
 
