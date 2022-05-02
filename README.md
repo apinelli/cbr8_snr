@@ -44,7 +44,7 @@ MAC Address    IP Address      I/F           MAC               Prim  RxPwr  Timi
 ```
 Now check the upstreams associated to this mac-domain (C1/0/0):
 ```
-F241-38-5-CBR8-2#sh run int cable 1/0/0
+CBR8#sh run int cable 1/0/0
 Load for five secs: 5%/0%; one minute: 6%; five minutes: 7%
 Time source is NTP, 17:41:08.836 EDT Mon May 2 2022
 
@@ -64,7 +64,7 @@ interface Cable1/0/0
 ```
 From the output above you can see the upstreams associated to interface Cable 1/0/0. Now you can run the command to check what are the indexes of those upstream channels:
 ```
-F241-38-5-CBR8-2#show snmp mib ifmib ifindex
+CBR8#show snmp mib ifmib ifindex
 Load for five secs: 6%/0%; one minute: 9%; five minutes: 9%
 Time source is NTP, 17:37:34.657 EDT Mon May 2 2022
 <snip>
