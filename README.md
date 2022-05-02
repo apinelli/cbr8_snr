@@ -30,7 +30,7 @@ It is necessary to have net-snmp package since the script invokes snmpwalk comma
 How to use it:
 
 1) Clone the following from github: 
-https://github.com/apinelli/cbr8_snr/tree/master
+https://github.com/apinelli/cbr8_snr
 
 2) Use `#show snmp mib ifmib ifindex` in the CBR8 in order to obtain the indexes of the interfaces you want to grab information from. 
 
